@@ -29,7 +29,7 @@ Sebuah elemen html dapat ditulis sebagai pasangan tag, sebuah konten, dan sebuah
 Standar struktur file HTML dapat dibuat sebagai berikut:
 ![struktur file HTML](./praktikum/struktur-html.png)
 
-beberapa tag dasar yang perlu diketahui:
+beberapa tag dasar yang perlu diketahui:\
 `h1` s/d `h6` -> berfungsi untuk membuat judul\
 `p` -> berfungsi untuk membuat paragraf\
 `li` -> berfungsi untuk membuat sebuah list\
