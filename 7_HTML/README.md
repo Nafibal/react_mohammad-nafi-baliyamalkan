@@ -30,15 +30,15 @@ Standar struktur file HTML dapat dibuat sebagai berikut:
 ![struktur file HTML](./praktikum/struktur-html.png)
 
 beberapa tag dasar yang perlu diketahui:
-`h1` s/d `h6` -> berfungsi untuk membuat judul
-`p` -> berfungsi untuk membuat paragraf
-`li` -> berfungsi untuk membuat sebuah list
-`ul` -> berfungsi untuk membuat poin dari list yang tidak berurut
-`ol` -> berfungsi untuk membuat poin dari list yang berurut
-`a` -> berfungsi untuk membuat sebuah link yang mengarah ke alamat lain
-`img` -> berfungsi untuk memasukkan sebuah gambar
-`button` -> berfungsi untuk membuat sebuah tombol
-`form` -> berfungsi untuk membuat sebuah form
-`input` -> berfungsi untuk membuat input/masukan dari sebuah form
-`label` -> berfungsi untuk membuat label dari sebuah input
-`table` -> berfungsi untuk membuat sebuah tabel
+`h1` s/d `h6` -> berfungsi untuk membuat judul\
+`p` -> berfungsi untuk membuat paragraf\
+`li` -> berfungsi untuk membuat sebuah list\
+`ul` -> berfungsi untuk membuat poin dari list yang tidak berurut\
+`ol` -> berfungsi untuk membuat poin dari list yang berurut\
+`a` -> berfungsi untuk membuat sebuah link yang mengarah ke alamat lain\
+`img` -> berfungsi untuk memasukkan sebuah gambar\
+`button` -> berfungsi untuk membuat sebuah tombol\
+`form` -> berfungsi untuk membuat sebuah form\
+`input` -> berfungsi untuk membuat input/masukan dari sebuah form\
+`label` -> berfungsi untuk membuat label dari sebuah input\
+`table` -> berfungsi untuk membuat sebuah tabel\
