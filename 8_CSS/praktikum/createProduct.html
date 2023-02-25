@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Product</title>
+  </head>
+  <body>
+    <header>
+      <h2>Simple Header</h2>
+      <a href="createProduct.html">Create Product</a>
+      <a href="landingPage.html">Landing Page</a>
+      <hr />
+    </header>
+    <h1>Create Product</h1>
+    <form action="">
+      <h2>Detail Product</h2>
+      <div>
+        <label for="product_name">Product name :</label><br />
+        <input
+          type="text"
+          id="product_name"
+          name="product_name"
+          required
+          minlength="6"
+          maxlength="50"
+        />
+      </div>
+      <div>
+        <label for="product_category">Product Category :</label><br />
+        <select name="product_category" id="product_category"></select>
+      </div>
+      <div>
+        <label for="freshness">Product Freshness</label><br />
+        <input
+          type="radio"
+          id="brand_new"
+          name="freshness"
+          value="brand_new"
+          required
+        />
+        <label for="brand_new">Brand New</label><br />
+        <input
+          type="radio"
+          id="second_hank"
+          name="freshness"
+          value="second_hank"
+        />
+        <label for="second_hank">Second Hank</label><br />
+        <input
+          type="radio"
+          id="refurbished"
+          name="freshness"
+          value="refurbished"
+          required
+        />
+        <label for="refurbished">Refurbished</label>
+      </div>
+      <div>
+        <label for="product_image">Image for Product</label>
+        <input type="file" name="product_image" id="product_image" />
+      </div>
+      <div>
+        <label for="product_description">additional Description</label><br />
+        <textarea
+          name="product_description"
+          id="product_description"
+          cols="30"
+          rows="10"
+        ></textarea>
+      </div>
+      <div>
+        <label for="product_price">Product price :</label><br />
+        <input
+          type="number"
+          name="product_price"
+          id="product_price"
+          placeholder="$ 100"
+          required
+        />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>
