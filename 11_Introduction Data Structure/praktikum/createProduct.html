@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <title>Create Product</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+      <div class="container-fluid">
+        <a class="navbar-brand me-3" href="#">Simple Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ms-auto align-items-center">
+            <a class="nav-link active" aria-current="page" href="#">
+              <button class="btn btn-primary">Home</button>
+            </a>
+            <a class="nav-link text-primary" href="#">Features</a>
+            <a class="nav-link text-primary" href="#">Pricing</a>
+            <a class="nav-link text-primary" href="#">FAQs</a>
+            <a class="nav-link text-primary" href="#">About</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="d-flex justify-content-center">
+        <i class="fa-brands fa-bootstrap fs-1"></i>
+      </div>
+      <h1 class="text-center">Create Product</h1>
+      <p class="text-center w-75 mx-auto mb-5">
+        Below is an example form built entirely with Bootstrap’s form controls.
+        Each required form group has a validation state that can be triggered by
+        attempting to submit the form without completing it.
+      </p>
+      <form
+        action=""
+        class="form w-50 mx-auto mb-5 needs-validation"
+        novalidate
+      >
+        <h2>Detail Product</h2>
+        <div class="mb-3">
+          <label class="form-label" for="product_name">Product name :</label
+          ><br />
+          <input
+            class="form-control"
+            type="text"
+            id="product_name"
+            name="product_name"
+            required
+            minlength="6"
+            maxlength="50"
+          />
+          <div class="valid-feedback">Sudah benar!</div>
+          <div class="invalid-feedback">Masih salah!</div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="product_category"
+            >Product Category :</label
+          ><br />
+          <select
+            class="form-select"
+            name="product_category"
+            id="product_category"
+            required
+          >
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+          <div class="valid-feedback">Sudah benar!</div>
+          <div class="invalid-feedback">Masih salah!</div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="freshness">Product Freshness</label
+          ><br />
+          <input
+            type="radio"
+            id="brand_new"
+            name="freshness"
+            value="brand_new"
+            required
+          />
+          <label class="form-label" for="brand_new">Brand New</label><br />
+          <input
+            type="radio"
+            id="second_hank"
+            name="freshness"
+            value="second_hank"
+            required
+          />
+          <label class="form-label" for="second_hank">Second Hank</label><br />
+          <input
+            type="radio"
+            id="refurbished"
+            name="freshness"
+            value="refurbished"
+            required
+          />
+          <label class="form-label" for="refurbished">Refurbished</label>
+          <div class="valid-feedback">Sudah benar!</div>
+          <div class="invalid-feedback">Masih salah!</div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="product_image"
+            >Image for Product</label
+          >
+          <input
+            class="form-control"
+            type="file"
+            name="product_image"
+            id="product_image"
+          />
+          <div class="valid-feedback">Sudah benar!</div>
+          <div class="invalid-feedback">Masih salah!</div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="product_description"
+            >additional Description</label
+          ><br />
+          <textarea
+            class="form-control"
+            name="product_description"
+            id="product_description"
+            cols="30"
+            rows="10"
+            required
+          ></textarea>
+          <div class="valid-feedback">Sudah benar!</div>
+          <div class="invalid-feedback">Masih salah!</div>
+        </div>
+        <div class="mb-5">
+          <label class="form-label" for="product_price">Product price :</label
+          ><br />
+          <input
+            class="form-control"
+            type="number"
+            name="product_price"
+            id="product_price"
+            placeholder="$ 100"
+            required
+          />
+          <div class="valid-feedback">Sudah benar!</div>
+          <div class="invalid-feedback">Masih salah!</div>
+        </div>
+        <button class="btn btn-primary w-100" type="submit">Submit</button>
+      </form>
+      <div class="w-75">
+        <table class="table table-striped" id="product_table">
+          <thead>
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Product Category</th>
+              <th scope="col">Image of Product</th>
+              <th scope="col">Product Freshness</th>
+              <th scope="col">Additional Description</th>
+              <th scope="col">Product Price</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <form action="">
+          <input
+            class="form-control w-25"
+            type="text"
+            placeholder="Search by product name"
+          />
+          <button class="btn btn-primary">Deletion</button>
+          <button class="btn btn-outline-primary">Search</button>
+        </form>
+      </div>
+    </div>
+  </body>
+
+  <script src="./js/bootstrap.js"></script>
+  <script src="./js/app.js"></script>
+</html>
