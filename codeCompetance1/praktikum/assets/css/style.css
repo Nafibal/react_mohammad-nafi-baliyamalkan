@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+a {
+  color: white !important;
+  text-decoration: none !important;
+}
+
+nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 2rem 4rem;
+}
+.nav_logo {
+  font-size: 2rem;
+  letter-spacing: 2px;
+}
+.nav_links {
+  display: flex;
+  column-gap: 2rem;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 1rem;
+  background-image: url("../images/wallpaper-1.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  color: white;
+}
+.hero > h1,
+.hero > p {
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.339);
+}
+.hero > h1 {
+  font-size: 4rem;
+  text-transform: uppercase;
+}
+.hero > p {
+  font-size: 1.7rem;
+}
+
+.contact {
+  padding: 5rem 0;
+}
+.form_container {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  column-gap: 1rem;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.178);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.form_image {
+  width: 60%;
+  object-fit: cover;
+}
+form {
+  flex-grow: 1;
+  padding: 2rem 4rem;
+}
+
+footer {
+  padding: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(41, 40, 40);
+  color: white;
+}
+.footer_title {
+  margin-bottom: 1rem;
+  font-size: 2.75rem;
+  font-weight: 500;
+}
+.footer_info {
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+.footer_navigation {
+  margin: 0.5rem 0 1.25rem;
+  display: flex;
+  column-gap: 3rem;
+}
+.footer_link {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+.footer_social_container {
+  margin-bottom: 1.25rem;
+  display: flex;
+  column-gap: 4rem;
+}
+.footer_social {
+  font-size: 2rem;
+}
+.clr-accent {
+  color: rgb(179, 249, 250);
+}
+.btn.clr-accent {
+  background-color: rgb(25, 129, 164);
+  /* color: black; */
+  outline: none;
+  border: none;
+}
