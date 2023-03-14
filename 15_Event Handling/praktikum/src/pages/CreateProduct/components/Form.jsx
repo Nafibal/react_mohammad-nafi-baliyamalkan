@@ -1,16 +1,28 @@
 import React from "react";
 
-const Form = () => {
+const Form = ({
+  lang,
+  languageData: {
+    title,
+    productName,
+    productCategory,
+    productFreshness,
+    productImage,
+    productDescription,
+    productPrice,
+    submit,
+  },
+}) => {
   return (
     <form
       action=""
       className="form w-50 mx-auto mb-5 needs-validation"
       noValidate=""
     >
-      <h2>Detail Product</h2>
+      <h2>{title[lang]}</h2>
       <div className="mb-3">
         <label className="form-label" htmlFor="product_name">
-          Product name :
+          {productName[lang]} :
         </label>
         <br />
         <input
@@ -27,7 +39,7 @@ const Form = () => {
       </div>
       <div className="mb-3">
         <label className="form-label" htmlFor="product_category">
-          Product Category :
+          {productCategory[lang]} :
         </label>
         <br />
         <select
@@ -36,16 +48,16 @@ const Form = () => {
           id="product_category"
           required=""
         >
-          <option value={1}>One</option>
-          <option value={2}>Two</option>
-          <option value={3}>Three</option>
+          <option value={1}>Buah</option>
+          <option value={2}>Sayur</option>
+          <option value={3}>Lainnya</option>
         </select>
         <div className="valid-feedback">Sudah benar!</div>
         <div className="invalid-feedback">Masih salah!</div>
       </div>
       <div className="mb-3">
         <label className="form-label" htmlFor="freshness">
-          Product Freshness
+          {productFreshness[lang]} :
         </label>
         <br />
         <input
@@ -55,7 +67,7 @@ const Form = () => {
           defaultValue="brand_new"
           required=""
         />
-        <label className="form-label" htmlFor="brand_new">
+        <label className="form-label ms-2" htmlFor="brand_new">
           Brand New
         </label>
         <br />
@@ -66,7 +78,7 @@ const Form = () => {
           defaultValue="second_hank"
           required=""
         />
-        <label className="form-label" htmlFor="second_hank">
+        <label className="form-label ms-2" htmlFor="second_hank">
           Second Hank
         </label>
         <br />
@@ -77,7 +89,7 @@ const Form = () => {
           defaultValue="refurbished"
           required=""
         />
-        <label className="form-label" htmlFor="refurbished">
+        <label className="form-label ms-2" htmlFor="refurbished">
           Refurbished
         </label>
         <div className="valid-feedback">Sudah benar!</div>
@@ -85,7 +97,7 @@ const Form = () => {
       </div>
       <div className="mb-3">
         <label className="form-label" htmlFor="product_image">
-          Image for Product
+          {productImage[lang]} :
         </label>
         <input
           className="form-control"
@@ -98,7 +110,7 @@ const Form = () => {
       </div>
       <div className="mb-3">
         <label className="form-label" htmlFor="product_description">
-          additional Description
+          {productDescription[lang]} :
         </label>
         <br />
         <textarea
@@ -115,7 +127,7 @@ const Form = () => {
       </div>
       <div className="mb-5">
         <label className="form-label" htmlFor="product_price">
-          Product price :
+          {productPrice[lang]} :
         </label>
         <br />
         <input
@@ -130,7 +142,7 @@ const Form = () => {
         <div className="invalid-feedback">Masih salah!</div>
       </div>
       <button className="btn btn-primary w-100" type="submit">
-        Submit
+        {submit[lang]}
       </button>
     </form>
   );

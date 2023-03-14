@@ -1,18 +1,29 @@
 import React from "react";
 
-const Table = () => {
+const Table = ({
+  lang,
+  languageData: {
+    title,
+    productName,
+    productCategory,
+    productFreshness,
+    productImage,
+    productDescription,
+    productPrice,
+  },
+}) => {
   return (
     <div className="w-75 ms-auto me-auto">
       <table className="table table-striped" id="product_table">
         <thead>
           <tr>
             <th scope="col">No</th>
-            <th scope="col">Product Name</th>
-            <th scope="col">Product Category</th>
-            <th scope="col">Image of Product</th>
-            <th scope="col">Product Freshness</th>
-            <th scope="col">Additional Description</th>
-            <th scope="col">Product Price</th>
+            <th scope="col">{productName[lang]}</th>
+            <th scope="col">{productCategory[lang]}</th>
+            <th scope="col">{productImage[lang]}</th>
+            <th scope="col">{productFreshness[lang]}</th>
+            <th scope="col">{productDescription[lang]}</th>
+            <th scope="col">{productPrice[lang]}</th>
           </tr>
         </thead>
         <tbody />
