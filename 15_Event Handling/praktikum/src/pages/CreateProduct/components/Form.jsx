@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Form = ({
   lang,
@@ -13,6 +13,10 @@ const Form = ({
     submit,
   },
 }) => {
+  const [nameValidation, setNameValidation] = useState(false);
+  const [descValidation, setDescValidation] = useState(false);
+  const [priceValidation, setPriceValidation] = useState(false);
+
   return (
     <form
       action=""
@@ -30,9 +34,16 @@ const Form = ({
           type="text"
           id="product_name"
           name="product_name"
-          required=""
-          minLength={6}
-          maxLength={50}
+          required
+          onChange={(e) => {
+            if (e.target.value.length < 10) {
+              setNameValidation(false);
+              e.target.style.border = "4px solid red";
+              return;
+            }
+            setNameValidation(true);
+            e.target.style.border = "none";
+          }}
         />
         <div className="valid-feedback">Sudah benar!</div>
         <div className="invalid-feedback">Masih salah!</div>
@@ -121,6 +132,15 @@ const Form = ({
           rows={10}
           required=""
           defaultValue={""}
+          onChange={(e) => {
+            if (e.target.value.length < 1) {
+              setDescValidation(false);
+              e.target.style.border = "4px solid red";
+              return;
+            }
+            setDescValidation(true);
+            e.target.style.border = "none";
+          }}
         />
         <div className="valid-feedback">Sudah benar!</div>
         <div className="invalid-feedback">Masih salah!</div>
@@ -136,7 +156,16 @@ const Form = ({
           name="product_price"
           id="product_price"
           placeholder="$ 100"
-          required=""
+          required
+          onChange={(e) => {
+            if (e.target.value.length < 1 || e.target.value < 0) {
+              setPriceValidation(false);
+              e.target.style.border = "4px solid red";
+              return;
+            }
+            setPriceValidation(true);
+            e.target.style.border = "none";
+          }}
         />
         <div className="valid-feedback">Sudah benar!</div>
         <div className="invalid-feedback">Masih salah!</div>
