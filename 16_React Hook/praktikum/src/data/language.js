@@ -46,7 +46,7 @@ const language = {
     },
     productPrice: {
       id: "Harga Produk",
-      en: "Additional Price",
+      en: "Product Price",
     },
     submit: {
       id: "kumpulkan",

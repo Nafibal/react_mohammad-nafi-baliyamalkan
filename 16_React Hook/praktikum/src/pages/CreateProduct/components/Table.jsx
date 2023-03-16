@@ -1,6 +1,8 @@
 import React from "react";
+import TableRow from "./TableRow";
 
 const Table = ({
+  products,
   lang,
   languageData: {
     title,
@@ -17,16 +19,21 @@ const Table = ({
       <table className="table table-striped" id="product_table">
         <thead>
           <tr>
-            <th scope="col">No</th>
+            <th scope="col">UUID</th>
             <th scope="col">{productName[lang]}</th>
             <th scope="col">{productCategory[lang]}</th>
-            <th scope="col">{productImage[lang]}</th>
+            {/* <th scope="col">{productImage[lang]}</th> */}
             <th scope="col">{productFreshness[lang]}</th>
-            <th scope="col">{productDescription[lang]}</th>
+            {/* <th scope="col">{productDescription[lang]}</th> */}
             <th scope="col">{productPrice[lang]}</th>
+            <th scope="col">Action</th>
           </tr>
         </thead>
-        <tbody />
+        <tbody>
+          {products.map((row) => {
+            return <TableRow key={row.uuid} data={row} />;
+          })}
+        </tbody>
       </table>
       <form action="">
         <input

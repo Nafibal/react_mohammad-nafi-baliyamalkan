@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "./components/Form";
 import Header from "./components/Header";
 import Table from "./components/Table";
 import language from "../../data/language";
+import uuid from "react-uuid";
 
 const CreateProduct = () => {
   const [lang, setLang] = useState("en");
   const [number, setNumber] = useState(Math.round(Math.random() * 100));
+  const [products, setProducts] = useState([]);
   const { createProduct: buttonLang } = language;
+
+  useEffect(() => {
+    window.alert("Welcome");
+  }, []);
+
+  const handleSubmit = (product) => {
+    product.uuid = uuid();
+    setProducts([...products, product]);
+  };
+  // console.log(uuid());
+  console.log(products);
 
   return (
     <div className="container-fluid">
@@ -31,8 +44,12 @@ const CreateProduct = () => {
         </button>
       </div>
       <Header lang={lang} languageData={language.header} />
-      <Form lang={lang} languageData={language.form} />
-      <Table lang={lang} languageData={language.form} />
+      <Form
+        lang={lang}
+        languageData={language.form}
+        handleSubmit={handleSubmit}
+      />
+      <Table lang={lang} languageData={language.form} products={products} />
     </div>
   );
 };

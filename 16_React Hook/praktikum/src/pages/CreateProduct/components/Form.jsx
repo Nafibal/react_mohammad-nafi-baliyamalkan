@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const Form = ({
+  handleSubmit,
   lang,
   languageData: {
     title,
@@ -13,15 +14,29 @@ const Form = ({
     submit,
   },
 }) => {
+  // const [descValidation, setDescValidation] = useState(false);
   const [nameValidation, setNameValidation] = useState(false);
-  const [descValidation, setDescValidation] = useState(false);
   const [priceValidation, setPriceValidation] = useState(false);
+
+  const [nameValue, setNameValue] = useState("");
+  const [categoryValue, setCategoryValue] = useState("Buah");
+  const [freshnessValue, setFreshnessValue] = useState("");
+  const [priceValue, setPriceValue] = useState("");
 
   return (
     <form
       action=""
       className="form w-50 mx-auto mb-5 needs-validation"
       noValidate=""
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSubmit({
+          nameValue,
+          categoryValue,
+          freshnessValue,
+          priceValue,
+        });
+      }}
     >
       <h2>{title[lang]}</h2>
       <div className="mb-3">
@@ -35,7 +50,10 @@ const Form = ({
           id="product_name"
           name="product_name"
           required
+          value={nameValue}
           onChange={(e) => {
+            setNameValue(e.target.value);
+
             if (e.target.value.length < 10) {
               setNameValidation(false);
               e.target.style.border = "4px solid red";
@@ -45,8 +63,6 @@ const Form = ({
             e.target.style.border = "none";
           }}
         />
-        <div className="valid-feedback">Sudah benar!</div>
-        <div className="invalid-feedback">Masih salah!</div>
       </div>
       <div className="mb-3">
         <label className="form-label" htmlFor="product_category">
@@ -57,14 +73,13 @@ const Form = ({
           className="form-select"
           name="product_category"
           id="product_category"
-          required=""
+          required
+          onChange={(e) => setCategoryValue(e.target.value)}
         >
-          <option value={1}>Buah</option>
-          <option value={2}>Sayur</option>
-          <option value={3}>Lainnya</option>
+          <option value="Buah">Buah</option>
+          <option value="Sayur">Sayur</option>
+          <option value="Lainnya">Lainnya</option>
         </select>
-        <div className="valid-feedback">Sudah benar!</div>
-        <div className="invalid-feedback">Masih salah!</div>
       </div>
       <div className="mb-3">
         <label className="form-label" htmlFor="freshness">
@@ -76,7 +91,8 @@ const Form = ({
           id="brand_new"
           name="freshness"
           defaultValue="brand_new"
-          required=""
+          required
+          onChange={(e) => setFreshnessValue(e.target.value)}
         />
         <label className="form-label ms-2" htmlFor="brand_new">
           Brand New
@@ -88,6 +104,7 @@ const Form = ({
           name="freshness"
           defaultValue="second_hank"
           required=""
+          onChange={(e) => setFreshnessValue(e.target.value)}
         />
         <label className="form-label ms-2" htmlFor="second_hank">
           Second Hank
@@ -99,14 +116,13 @@ const Form = ({
           name="freshness"
           defaultValue="refurbished"
           required=""
+          onChange={(e) => setFreshnessValue(e.target.value)}
         />
         <label className="form-label ms-2" htmlFor="refurbished">
           Refurbished
         </label>
-        <div className="valid-feedback">Sudah benar!</div>
-        <div className="invalid-feedback">Masih salah!</div>
       </div>
-      <div className="mb-3">
+      {/* <div className="mb-3">
         <label className="form-label" htmlFor="product_image">
           {productImage[lang]} :
         </label>
@@ -118,8 +134,8 @@ const Form = ({
         />
         <div className="valid-feedback">Sudah benar!</div>
         <div className="invalid-feedback">Masih salah!</div>
-      </div>
-      <div className="mb-3">
+      </div> */}
+      {/* <div className="mb-3">
         <label className="form-label" htmlFor="product_description">
           {productDescription[lang]} :
         </label>
@@ -144,7 +160,7 @@ const Form = ({
         />
         <div className="valid-feedback">Sudah benar!</div>
         <div className="invalid-feedback">Masih salah!</div>
-      </div>
+      </div> */}
       <div className="mb-5">
         <label className="form-label" htmlFor="product_price">
           {productPrice[lang]} :
@@ -160,15 +176,15 @@ const Form = ({
           onChange={(e) => {
             if (e.target.value.length < 1 || e.target.value < 0) {
               setPriceValidation(false);
+              setPriceValue(e.target.value);
               e.target.style.border = "4px solid red";
               return;
             }
             setPriceValidation(true);
+            setPriceValue(e.target.value);
             e.target.style.border = "none";
           }}
         />
-        <div className="valid-feedback">Sudah benar!</div>
-        <div className="invalid-feedback">Masih salah!</div>
       </div>
       <button className="btn btn-primary w-100" type="submit">
         {submit[lang]}
