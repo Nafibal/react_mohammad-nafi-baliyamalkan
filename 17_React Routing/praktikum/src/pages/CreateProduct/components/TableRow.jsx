@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const TableRow = ({
   data: { nameValue, categoryValue, freshnessValue, priceValue, uuid },
@@ -13,6 +14,9 @@ const TableRow = ({
       <td>{freshnessValue}</td>
       <td>{priceValue}</td>
       <td>
+        <Link to={`/product/${uuid}`} className="me-2">
+          <button className="btn btn-primary">Lihat</button>
+        </Link>
         <button
           className="btn btn-danger me-2"
           onClick={() => {

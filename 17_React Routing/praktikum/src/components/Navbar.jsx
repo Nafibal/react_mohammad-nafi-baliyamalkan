@@ -29,12 +29,8 @@ const Navbar = () => {
             >
               <button className="btn btn-primary">Home</button>
             </Link>
-            <Link
-              to="/createProduct"
-              className="nav-link text-primary"
-              href="#"
-            >
-              Create Product
+            <Link to="/product" className="nav-link text-primary" href="#">
+              Product
             </Link>
             {/* <a className="nav-link text-primary" href="#">
               Pricing

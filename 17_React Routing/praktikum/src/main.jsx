@@ -10,12 +10,14 @@ import "./index.css";
 import Layout from "./Layout";
 import CreateProduct from "./pages/CreateProduct/CreateProduct";
 import LandingPage from "./pages/LandingPage/LandingPage";
+import Product from "./pages/Product/Product";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route path="/" element={<LandingPage />} />
-      <Route path="/createProduct" element={<CreateProduct />} />
+      <Route path="/product" element={<CreateProduct />} />
+      <Route path="/product/:uuid" element={<Product />} />
     </Route>
   )
 );
