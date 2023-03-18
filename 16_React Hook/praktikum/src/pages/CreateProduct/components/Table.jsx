@@ -13,6 +13,7 @@ const Table = ({
     productDescription,
     productPrice,
   },
+  deleteProduct,
 }) => {
   return (
     <div className="w-75 ms-auto me-auto">
@@ -31,7 +32,13 @@ const Table = ({
         </thead>
         <tbody>
           {products.map((row) => {
-            return <TableRow key={row.uuid} data={row} />;
+            return (
+              <TableRow
+                key={row.uuid}
+                data={row}
+                deleteProduct={deleteProduct}
+              />
+            );
           })}
         </tbody>
       </table>

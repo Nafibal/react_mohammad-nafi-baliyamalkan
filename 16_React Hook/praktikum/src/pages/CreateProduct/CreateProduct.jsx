@@ -19,8 +19,11 @@ const CreateProduct = () => {
     product.uuid = uuid();
     setProducts([...products, product]);
   };
-  // console.log(uuid());
-  console.log(products);
+
+  const deleteProduct = (uuid) => {
+    const newProducts = products.filter((product) => product.uuid !== uuid);
+    setProducts(newProducts);
+  };
 
   return (
     <div className="container-fluid">
@@ -49,7 +52,12 @@ const CreateProduct = () => {
         languageData={language.form}
         handleSubmit={handleSubmit}
       />
-      <Table lang={lang} languageData={language.form} products={products} />
+      <Table
+        lang={lang}
+        languageData={language.form}
+        products={products}
+        deleteProduct={deleteProduct}
+      />
     </div>
   );
 };
