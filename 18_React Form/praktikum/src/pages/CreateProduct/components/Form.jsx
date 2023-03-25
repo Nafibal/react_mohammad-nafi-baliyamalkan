@@ -32,8 +32,6 @@ const Form = ({
       noValidate=""
       onSubmit={(e) => {
         e.preventDefault();
-        // console.log(image);
-        // console.log(freshnessInput);
         handleSubmit({
           nameValue: nameInput.current.value,
           categoryValue: categoryInput.current.value,
@@ -79,7 +77,6 @@ const Form = ({
           id="product_category"
           required
           ref={categoryInput}
-          // onChange={(e) => setCategoryValue(e.target.value)}
         >
           <option value="Buah">Buah</option>
           <option value="Sayur">Sayur</option>
