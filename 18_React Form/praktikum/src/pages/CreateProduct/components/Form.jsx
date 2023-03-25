@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 const Form = ({
   handleSubmit,
@@ -14,14 +14,16 @@ const Form = ({
     submit,
   },
 }) => {
-  // const [descValidation, setDescValidation] = useState(false);
-  const [nameValidation, setNameValidation] = useState(false);
-  const [priceValidation, setPriceValidation] = useState(false);
+  const [isNameError, setIsNameError] = useState(false);
+  const [isDescError, setIsDescError] = useState(false);
+  const [isPriceError, setIsPriceError] = useState(false);
 
-  const [nameValue, setNameValue] = useState("");
-  const [categoryValue, setCategoryValue] = useState("Buah");
-  const [freshnessValue, setFreshnessValue] = useState("");
-  const [priceValue, setPriceValue] = useState("");
+  const nameInput = useRef(null);
+  const categoryInput = useRef("Buah");
+  const [freshnessInput, setFreshnessInput] = useState("brand_new");
+  const [image, setImage] = useState();
+  const descInput = useRef(null);
+  const priceInput = useRef(null);
 
   return (
     <form
@@ -30,11 +32,15 @@ const Form = ({
       noValidate=""
       onSubmit={(e) => {
         e.preventDefault();
+        // console.log(image);
+        // console.log(freshnessInput);
         handleSubmit({
-          nameValue,
-          categoryValue,
-          freshnessValue,
-          priceValue,
+          nameValue: nameInput.current.value,
+          categoryValue: categoryInput.current.value,
+          freshnessValue: freshnessInput,
+          imageValue: image,
+          descValue: descInput.current.value,
+          priceValue: priceInput.current.value,
         });
       }}
     >
@@ -50,19 +56,17 @@ const Form = ({
           id="product_name"
           name="product_name"
           required
-          value={nameValue}
+          ref={nameInput}
           onChange={(e) => {
-            setNameValue(e.target.value);
-
-            if (e.target.value.length < 10) {
-              setNameValidation(false);
-              e.target.style.border = "4px solid red";
-              return;
-            }
-            setNameValidation(true);
-            e.target.style.border = "none";
+            let regex = new RegExp(/[@/#\{\}]/);
+            setIsNameError(regex.test(e.target.value));
           }}
         />
+        {isNameError && (
+          <p className="text-danger mt-2">
+            Input tidak boleh mengandung simbol
+          </p>
+        )}
       </div>
       <div className="mb-3">
         <label className="form-label" htmlFor="product_category">
@@ -74,7 +78,8 @@ const Form = ({
           name="product_category"
           id="product_category"
           required
-          onChange={(e) => setCategoryValue(e.target.value)}
+          ref={categoryInput}
+          // onChange={(e) => setCategoryValue(e.target.value)}
         >
           <option value="Buah">Buah</option>
           <option value="Sayur">Sayur</option>
@@ -91,8 +96,9 @@ const Form = ({
           id="brand_new"
           name="freshness"
           defaultValue="brand_new"
+          defaultChecked
           required
-          onChange={(e) => setFreshnessValue(e.target.value)}
+          onChange={(e) => setFreshnessInput(e.target.value)}
         />
         <label className="form-label ms-2" htmlFor="brand_new">
           Brand New
@@ -104,7 +110,7 @@ const Form = ({
           name="freshness"
           defaultValue="second_hank"
           required=""
-          onChange={(e) => setFreshnessValue(e.target.value)}
+          onChange={(e) => setFreshnessInput(e.target.value)}
         />
         <label className="form-label ms-2" htmlFor="second_hank">
           Second Hank
@@ -116,13 +122,13 @@ const Form = ({
           name="freshness"
           defaultValue="refurbished"
           required=""
-          onChange={(e) => setFreshnessValue(e.target.value)}
+          onChange={(e) => setFreshnessInput(e.target.value)}
         />
         <label className="form-label ms-2" htmlFor="refurbished">
           Refurbished
         </label>
       </div>
-      {/* <div className="mb-3">
+      <div className="mb-3">
         <label className="form-label" htmlFor="product_image">
           {productImage[lang]} :
         </label>
@@ -131,11 +137,13 @@ const Form = ({
           type="file"
           name="product_image"
           id="product_image"
+          required
+          onChange={(e) => {
+            setImage(URL.createObjectURL(e.target.files[0]));
+          }}
         />
-        <div className="valid-feedback">Sudah benar!</div>
-        <div className="invalid-feedback">Masih salah!</div>
-      </div> */}
-      {/* <div className="mb-3">
+      </div>
+      <div className="mb-3">
         <label className="form-label" htmlFor="product_description">
           {productDescription[lang]} :
         </label>
@@ -147,20 +155,18 @@ const Form = ({
           cols={30}
           rows={10}
           required=""
-          defaultValue={""}
+          ref={descInput}
           onChange={(e) => {
-            if (e.target.value.length < 1) {
-              setDescValidation(false);
-              e.target.style.border = "4px solid red";
-              return;
-            }
-            setDescValidation(true);
-            e.target.style.border = "none";
+            let regex = new RegExp(/[@/#\{\}]/);
+            setIsDescError(regex.test(e.target.value));
           }}
         />
-        <div className="valid-feedback">Sudah benar!</div>
-        <div className="invalid-feedback">Masih salah!</div>
-      </div> */}
+        {isDescError && (
+          <p className="text-danger mt-2">
+            Input tidak boleh mengandung simbol
+          </p>
+        )}
+      </div>
       <div className="mb-5">
         <label className="form-label" htmlFor="product_price">
           {productPrice[lang]} :
@@ -173,18 +179,15 @@ const Form = ({
           id="product_price"
           placeholder="$ 100"
           required
+          ref={priceInput}
           onChange={(e) => {
-            if (e.target.value.length < 1 || e.target.value < 0) {
-              setPriceValidation(false);
-              setPriceValue(e.target.value);
-              e.target.style.border = "4px solid red";
-              return;
-            }
-            setPriceValidation(true);
-            setPriceValue(e.target.value);
-            e.target.style.border = "none";
+            let value = e.target.value;
+            setIsPriceError(value < 0);
           }}
         />
+        {isPriceError && (
+          <p className="text-danger mt-2">Input tidak boleh negatif</p>
+        )}
       </div>
       <button className="btn btn-primary w-100" type="submit">
         {submit[lang]}
