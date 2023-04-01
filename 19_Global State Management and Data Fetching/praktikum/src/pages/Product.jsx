@@ -1,17 +1,23 @@
 import React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const Product = () => {
-  const [product, useProduct] = useState(null);
+  const { id } = useParams();
+  const product = useSelector(
+    (state) => state.products.products.filter((product) => product.id === id)[0]
+  );
+
   return (
     <div className="container mt-5">
-      <h1>Nama Produk</h1>
+      <h1>{product.productName}</h1>
       <h2>Category</h2>
-      <p>Kategori</p>
+      <p>{product.productCategory}</p>
       <h2>Freshness</h2>
-      <p>freshness</p>
+      <p>{product.productFreshness}</p>
       <h2>Price</h2>
-      <p>price</p>
+      <p>{product.productPrice}</p>
     </div>
   );
 };

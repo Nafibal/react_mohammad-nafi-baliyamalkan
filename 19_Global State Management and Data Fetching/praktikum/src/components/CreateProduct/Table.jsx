@@ -1,44 +1,29 @@
 import React from "react";
 import TableRow from "./TableRow";
+import { useSelector, useDispatch } from "react-redux";
 
-const Table = ({
-  products,
-  lang,
-  languageData: {
-    title,
-    productName,
-    productCategory,
-    productFreshness,
-    productImage,
-    productDescription,
-    productPrice,
-  },
-  deleteProduct,
-}) => {
+const Table = ({ lang }) => {
+  const products = useSelector((state) => state.products.products);
+  const language = useSelector((state) => state.language.form);
+
   return (
     <div className="w-75 ms-auto me-auto">
       <table className="table table-striped" id="product_table">
         <thead>
           <tr>
-            <th scope="col">UUID</th>
-            <th scope="col">{productName[lang]}</th>
-            <th scope="col">{productCategory[lang]}</th>
-            <th scope="col">{productFreshness[lang]}</th>
-            <th scope="col">{productImage[lang]}</th>
+            <th scope="col">ID</th>
+            <th scope="col">{language.productName[lang]}</th>
+            <th scope="col">{language.productCategory[lang]}</th>
+            <th scope="col">{language.productFreshness[lang]}</th>
+            {/* <th scope="col">{productImage[lang]}</th> */}
             {/* <th scope="col">{productDescription[lang]}</th> */}
-            <th scope="col">{productPrice[lang]}</th>
+            <th scope="col">{language.productPrice[lang]}</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
           {products.map((row) => {
-            return (
-              <TableRow
-                key={row.uuid}
-                data={row}
-                deleteProduct={deleteProduct}
-              />
-            );
+            return <TableRow key={row.id} data={row} />;
           })}
         </tbody>
       </table>

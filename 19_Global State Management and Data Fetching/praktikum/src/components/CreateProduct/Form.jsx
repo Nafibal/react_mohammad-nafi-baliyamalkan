@@ -1,19 +1,13 @@
 import React, { useState, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { v4 as uuidv4 } from "uuid";
+import { EditProduct, addProduct } from "../../store/productSlice";
+import { Link, useNavigate } from "react-router-dom";
 
-const Form = ({
-  handleSubmit,
-  lang,
-  languageData: {
-    title,
-    productName,
-    productCategory,
-    productFreshness,
-    productImage,
-    productDescription,
-    productPrice,
-    submit,
-  },
-}) => {
+const Form = ({ lang, type, id }) => {
+  const language = useSelector((state) => state.language.form);
+  const navigate = useNavigate();
+
   const [isNameError, setIsNameError] = useState(false);
   const [isDescError, setIsDescError] = useState(false);
   const [isPriceError, setIsPriceError] = useState(false);
@@ -25,6 +19,8 @@ const Form = ({
   const descInput = useRef(null);
   const priceInput = useRef(null);
 
+  const dispatch = useDispatch();
+
   return (
     <form
       action=""
@@ -32,20 +28,38 @@ const Form = ({
       noValidate=""
       onSubmit={(e) => {
         e.preventDefault();
-        handleSubmit({
-          nameValue: nameInput.current.value,
-          categoryValue: categoryInput.current.value,
-          freshnessValue: freshnessInput,
-          imageValue: image,
-          descValue: descInput.current.value,
-          priceValue: priceInput.current.value,
-        });
+        if (type) {
+          dispatch(
+            EditProduct({
+              id: id,
+              productName: nameInput.current.value,
+              productCategory: categoryInput.current.value,
+              productFreshness: freshnessInput,
+              image: image,
+              additionalDescription: descInput.current.value,
+              productPrice: priceInput.current.value,
+            })
+          );
+          navigate("/product");
+          return;
+        }
+        dispatch(
+          addProduct({
+            id: uuidv4(),
+            productName: nameInput.current.value,
+            productCategory: categoryInput.current.value,
+            productFreshness: freshnessInput,
+            image: image,
+            additionalDescription: descInput.current.value,
+            productPrice: priceInput.current.value,
+          })
+        );
       }}
     >
-      <h2>{title[lang]}</h2>
+      <h2>{language.title[lang]}</h2>
       <div className="mb-3">
         <label className="form-label" htmlFor="product_name">
-          {productName[lang]} :
+          {language.productName[lang]} :
         </label>
         <br />
         <input
@@ -68,7 +82,7 @@ const Form = ({
       </div>
       <div className="mb-3">
         <label className="form-label" htmlFor="product_category">
-          {productCategory[lang]} :
+          {language.productCategory[lang]} :
         </label>
         <br />
         <select
@@ -85,7 +99,7 @@ const Form = ({
       </div>
       <div className="mb-3">
         <label className="form-label" htmlFor="freshness">
-          {productFreshness[lang]} :
+          {language.productFreshness[lang]} :
         </label>
         <br />
         <input
@@ -127,7 +141,7 @@ const Form = ({
       </div>
       <div className="mb-3">
         <label className="form-label" htmlFor="product_image">
-          {productImage[lang]} :
+          {language.productImage[lang]} :
         </label>
         <input
           className="form-control"
@@ -142,7 +156,7 @@ const Form = ({
       </div>
       <div className="mb-3">
         <label className="form-label" htmlFor="product_description">
-          {productDescription[lang]} :
+          {language.productDescription[lang]} :
         </label>
         <br />
         <textarea
@@ -166,7 +180,7 @@ const Form = ({
       </div>
       <div className="mb-5">
         <label className="form-label" htmlFor="product_price">
-          {productPrice[lang]} :
+          {language.productPrice[lang]} :
         </label>
         <br />
         <input
@@ -187,7 +201,7 @@ const Form = ({
         )}
       </div>
       <button className="btn btn-primary w-100" type="submit">
-        {submit[lang]}
+        {language.submit[lang]}
       </button>
     </form>
   );

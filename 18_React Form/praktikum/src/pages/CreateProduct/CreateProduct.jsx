@@ -3,7 +3,7 @@ import Form from "./components/Form";
 import Header from "./components/Header";
 import Table from "./components/Table";
 import language from "../../data/language";
-import uuid from "react-uuid";
+import { v4 as uuidv4 } from "uuid";
 
 const CreateProduct = () => {
   const [lang, setLang] = useState("en");
@@ -16,7 +16,7 @@ const CreateProduct = () => {
   // }, []);
 
   const handleSubmit = (product) => {
-    product.uuid = uuid();
+    product.uuid = uuidv4();
     setProducts([...products, product]);
   };
 
