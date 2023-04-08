@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import language from "../data/language";
 import Form from "../components/CreateProduct/Form";
 import Table from "../components/CreateProduct/Table";
 import Header from "../components/CreateProduct/Header";
 import { useSelector } from "react-redux";
+import { redirect, useNavigate } from "react-router-dom";
+import useNotLoggedIn from "../hooks/useNotLoggedIn";
 
 const CreateProduct = () => {
+  const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
+  useNotLoggedIn(isLoggedIn);
+
   const [lang, setLang] = useState("en");
   const [number, setNumber] = useState(Math.round(Math.random() * 100));
   const language = useSelector((state) => state.language.createProduct);
+
+  console.log(isLoggedIn);
 
   return (
     <div className="container-fluid mt-5">

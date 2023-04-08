@@ -1,8 +1,12 @@
 import React from "react";
 import "./LandingPage.css";
 import heroImage from "../assets/hero-img.png";
+import useNotLoggedIn from "../hooks/useNotLoggedIn";
+import { useSelector } from "react-redux";
 
 const LandingPage = () => {
+  const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
+  useNotLoggedIn(isLoggedIn);
   return (
     <>
       <section id="hero">

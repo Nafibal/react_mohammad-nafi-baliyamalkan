@@ -1,12 +1,11 @@
 import React, { useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { v4 as uuidv4 } from "uuid";
-import { EditProduct, addProduct } from "../../store/productSlice";
-import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { BASE_URL } from "../../const";
+import { editProduct, submitProduct } from "../../utils/utils";
 
-const Form = ({ lang, type, id }) => {
+const Form = ({ lang, edit, id }) => {
   const language = useSelector((state) => state.language.form);
-  const navigate = useNavigate();
 
   const [isNameError, setIsNameError] = useState(false);
   const [isDescError, setIsDescError] = useState(false);
@@ -19,7 +18,14 @@ const Form = ({ lang, type, id }) => {
   const descInput = useRef(null);
   const priceInput = useRef(null);
 
-  const dispatch = useDispatch();
+  const productInput = {
+    productName: nameInput.current?.value,
+    productCategory: categoryInput.current.value,
+    productFreshness: freshnessInput,
+    image: image,
+    additionalDescription: descInput.current?.value,
+    productPrice: priceInput.current?.value,
+  };
 
   return (
     <form
@@ -28,32 +34,13 @@ const Form = ({ lang, type, id }) => {
       noValidate=""
       onSubmit={(e) => {
         e.preventDefault();
-        if (type) {
-          dispatch(
-            EditProduct({
-              id: id,
-              productName: nameInput.current.value,
-              productCategory: categoryInput.current.value,
-              productFreshness: freshnessInput,
-              image: image,
-              additionalDescription: descInput.current.value,
-              productPrice: priceInput.current.value,
-            })
-          );
-          navigate("/product");
+        if (edit) {
+          editProduct(id, productInput);
+          // window.location.reload();
           return;
         }
-        dispatch(
-          addProduct({
-            id: uuidv4(),
-            productName: nameInput.current.value,
-            productCategory: categoryInput.current.value,
-            productFreshness: freshnessInput,
-            image: image,
-            additionalDescription: descInput.current.value,
-            productPrice: priceInput.current.value,
-          })
-        );
+        submitProduct(productInput);
+        // window.location.reload();
       }}
     >
       <h2>{language.title[lang]}</h2>

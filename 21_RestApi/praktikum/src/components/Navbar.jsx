@@ -1,7 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { logoutUser } from "../store/loginSlice";
+import { useDispatch } from "react-redux";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -32,6 +36,15 @@ const Navbar = () => {
             <Link to="/product" className="nav-link text-primary" href="#">
               Product
             </Link>
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                dispatch(logoutUser());
+                navigate("/login");
+              }}
+            >
+              Logout
+            </button>
             {/* <a className="nav-link text-primary" href="#">
               Pricing
             </a>

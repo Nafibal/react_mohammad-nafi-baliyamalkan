@@ -2,12 +2,20 @@ import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import useFetchProducts from "../hooks/useFetchProducts";
+import { BASE_URL } from "../const";
+import useNotLoggedIn from "../hooks/useNotLoggedIn";
 
 const Product = () => {
+  const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
+  useNotLoggedIn(isLoggedIn);
+
   const { id } = useParams();
-  const product = useSelector(
-    (state) => state.products.products.filter((product) => product.id === id)[0]
-  );
+  const product = useFetchProducts(`${BASE_URL}/${id}`);
+
+  if (!product) {
+    return null;
+  }
 
   return (
     <div className="container mt-5">

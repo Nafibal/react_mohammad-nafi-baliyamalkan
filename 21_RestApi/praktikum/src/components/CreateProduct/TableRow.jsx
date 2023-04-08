@@ -1,7 +1,6 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteProduct } from "../../store/productSlice";
+import { deleteProduct } from "../../utils/utils";
 
 const TableRow = ({
   data: {
@@ -14,7 +13,6 @@ const TableRow = ({
     additionalDescription,
   },
 }) => {
-  const dispatch = useDispatch();
   return (
     <tr>
       <th scope="row">{id}</th>
@@ -34,7 +32,7 @@ const TableRow = ({
           className="btn btn-danger me-2"
           onClick={() => {
             if (confirm("Apakah anda yakin ingin menghapus produk?")) {
-              dispatch(deleteProduct(id));
+              deleteProduct(id);
             }
           }}
         >

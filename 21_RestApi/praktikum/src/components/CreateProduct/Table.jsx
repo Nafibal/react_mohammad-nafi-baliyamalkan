@@ -1,10 +1,12 @@
 import React from "react";
 import TableRow from "./TableRow";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import useFetchProducts from "../../hooks/useFetchProducts";
+import { BASE_URL } from "../../const";
 
 const Table = ({ lang }) => {
-  const products = useSelector((state) => state.products.products);
   const language = useSelector((state) => state.language.form);
+  const products = useFetchProducts(BASE_URL);
 
   return (
     <div className="w-75 ms-auto me-auto">
@@ -22,9 +24,10 @@ const Table = ({ lang }) => {
           </tr>
         </thead>
         <tbody>
-          {products.map((row) => {
-            return <TableRow key={row.id} data={row} />;
-          })}
+          {products &&
+            products.map((row) => {
+              return <TableRow key={row.id} data={row} />;
+            })}
         </tbody>
       </table>
       <form action="">
