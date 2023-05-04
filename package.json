@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "graphql-ws": "^5.12.1",
-    "subscriptions-transport-ws": "^0.11.0"
-  }
-}
