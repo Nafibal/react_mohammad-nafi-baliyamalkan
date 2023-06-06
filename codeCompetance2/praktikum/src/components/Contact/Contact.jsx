@@ -1,31 +1,56 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import "./Contact.css";
 import image from "../../assets/images/wallpaper-2.jpg";
 
 const Contact = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
   return (
     <section className="contact">
       <div className="form_container">
         <img className="form_image" src={image} alt="image" />
-        <form>
+        <form
+          onSubmit={handleSubmit((data) => {
+            alert(
+              `first name : ${data.firstName}, last name : ${data.lastName}, email : ${data.email}, description : ${data.desc}`
+            );
+          })}
+        >
           <h2 className="mb-3">Contact Us</h2>
           <div className="mb-3">
             <label htmlFor="firstName" className="form-label">
               First Name
             </label>
-            <input type="text" className="form-control" id="firstName" />
+            <input
+              {...register("firstName")}
+              type="text"
+              className="form-control"
+              id="firstName"
+            />
           </div>
           <div className="mb-3">
             <label htmlFor="lastName" className="form-label">
               Last Name
             </label>
-            <input type="text" className="form-control" id="lastName" />
+            <input
+              {...register("lastName")}
+              type="text"
+              className="form-control"
+              id="lastName"
+            />
           </div>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
             </label>
             <input
+              {...register("email")}
               type="email"
               className="form-control"
               id="exampleInputEmail1"
@@ -38,6 +63,7 @@ const Contact = () => {
           <div className="mb-3">
             <div className="form-floating">
               <textarea
+                {...register("description")}
                 className="form-control"
                 placeholder="Leave a desc here"
                 id="floatingTextarea2"
